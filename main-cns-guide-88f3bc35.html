@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>leyu · 资料索引与信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f5f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      line-height: 1.7;
+      color: #1e2a3a;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉 / hero 区域 ———— 信息索引的起点 */
+    .hero {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+      padding: 48px 40px 40px;
+      margin-bottom: 32px;
+      border: 1px solid #e9ebee;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.06rem;
+      color: #3a4b5e;
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      font-size: 0.9rem;
+      background: #edf2f7;
+      padding: 6px 18px;
+      border-radius: 40px;
+      color: #1e3a5f;
+      letter-spacing: 0.2px;
+      border: 1px solid #dde2e8;
+    }
+
+    /* 卡片网格 ———— 信息块 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e9ebee;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+      border-color: #d5dadf;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 520;
+      margin-bottom: 12px;
+      color: #1f2937;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eef1f4;
+    }
+
+    .card p {
+      font-size: 0.98rem;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    .card ul li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+      color: #2c3e50;
+      font-size: 0.96rem;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #587b9c;
+    }
+
+    /* 自然段落区域 ———— 适合人群 + 说明 */
+    .section-block {
+      background: #ffffff;
+      border: 1px solid #e9ebee;
+      border-radius: 24px;
+      padding: 36px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+    }
+
+    .section-block h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #1e293b;
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .section-block p {
+      margin-bottom: 14px;
+      font-size: 1rem;
+      color: #2e3b4c;
+    }
+
+    .section-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .inline-link {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1px solid #b7c9e8;
+      transition: border-color 0.2s, color 0.15s;
+    }
+
+    .inline-link:hover {
+      color: #1d4ed8;
+      border-bottom-color: #1d4ed8;
+    }
+
+    .faq-preview {
+      background: #fafbfc;
+      border-radius: 18px;
+      padding: 22px 26px;
+      border: 1px solid #e2e6ea;
+      margin: 24px 0 10px;
+    }
+
+    .faq-preview summary {
+      font-weight: 500;
+      font-size: 1.05rem;
+      cursor: pointer;
+      color: #1e293b;
+      padding: 6px 0;
+    }
+
+    .faq-preview details p {
+      margin-top: 12px;
+      color: #3a4b5e;
+      font-size: 0.97rem;
+      padding-left: 4px;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #6b7a8c;
+      text-align: center;
+      margin-top: 32px;
+      border-top: 1px solid #dce1e6;
+      padding-top: 28px;
+    }
+
+    .small-meta {
+      font-size: 0.85rem;
+      color: #6e7e91;
+      margin-top: 6px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+      .hero {
+        padding: 32px 20px;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .section-block {
+        padding: 28px 18px;
+      }
+      .card-grid {
+        gap: 16px;
+      }
+      .card {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- hero 主视觉：资料整理与索引出发点 -->
+  <div class="hero">
+    <h1>leyu · 信息索引与内容卡片</h1>
+    <p>从资料聚合到便捷查阅，围绕 leyu 整理出结构化的用途模块、适用人群以及常见索引方向。以下内容基于公开信息与使用场景梳理，不构成任何推荐或承诺。</p>
+    <span class="tagline">🧩 整理 · 分类 · 客观呈现</span>
+  </div>
+
+  <!-- 用途卡片区 —— 信息卡片式 -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>📋 日常查阅</h3>
+      <p>快速浏览分类信息，将常用模块以卡片方式排列，减少重复寻找步骤。适合需要提高信息获取效率的使用者。</p>
+      <ul>
+        <li>模块化信息入口</li>
+        <li>轻量分类标签</li>
+        <li>内容结构一目了然</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🗂️ 资料归档</h3>
+      <p>基于 leyu 相关的内容归类，可辅助个人或小团队对分散信息做简单索引。卡片本身不存储敏感数据。</p>
+      <ul>
+        <li>主题式整理</li>
+        <li>低维护成本</li>
+        <li>可扩展卡片布局</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔍 快速参考</h3>
+      <p>面向经常需要对照或回溯资料的用户，以卡片摘要形式展示关键描述，降低反复翻找的认知负荷。</p>
+      <ul>
+        <li>摘要式陈列</li>
+        <li>关键词高亮区</li>
+        <li>适应移动端浏览</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 适合人群 + 自然链接段落 -->
+  <div class="section-block">
+    <h2>适合哪些人</h2>
+    <p>如果你经常需要从多个来源整合零散信息，或希望有一个相对整洁的卡片界面来放置常用索引，那么这种组织方式可能适合你。无论是个人学习记录、团队内部分享，还是单纯想换一种视角浏览 <a href="https://main-cns-leyu.com" class="inline-link">leyu</a> 相关的内容，都可以参考这种卡片分区方式。</p>
+    <p>界面设计偏重内容和可读性，没有过多装饰，目的是让信息本身更突出。你可以根据自己的使用习惯调整卡片顺序，或者补充更多自定义条目。</p>
+  </div>
+
+  <!-- 进一步说明：从信息索引角度延伸 -->
+  <div class="section-block" style="background: #fafbfc; border-color: #dde2e8;">
+    <h2>关于 leyu 的索引思路</h2>
+    <p>在信息日益碎片化的环境下，将相关资源或知识点按照用途进行卡片化归类，是一种轻量级的整理习惯。leyu 作为一个可关注的线上位置，我们通过资料梳理的方式将其核心模块、常见应用场景以及受众特征以卡片形式呈现，便于快速建立认知框架。</p>
+    <p>每一张卡片都对应一个实际可切入的角度，你可以把它当作一份静态的参考页，也可以在此基础上衍生出自己的笔记或文档集合。如果你对某些卡片内容有更深入的兴趣，可以直接在浏览器中打开 <a href="https://main-cns-leyu.com" class="inline-link">leyu</a> 做进一步了解。</p>
+  </div>
+
+  <!-- FAQ 摘要卡片 -->
+  <div class="faq-preview">
+    <details>
+      <summary>❓ 常见问题摘要</summary>
+      <p>问：卡片中的信息会实时更新吗？<br>答：当前页面为静态索引示例，不自动同步更新，建议以实际来源为准。</p>
+      <p>问：是否可以自行添加卡片？<br>答：当然，卡片结构简单，你可以复制卡片区块并修改内容，适合个人笔记或团队wiki。</p>
+      <p>问：这个页面与 leyu 官方的关系？<br>答：本页是由用户自制的信息整理页，非官方产品页面，仅用于展示资料卡片与索引思路。</p>
+    </details>
+  </div>
+
+  <!-- 底部提示 -->
+  <div class="footer-note">
+    <span>基于公开信息整理 · 卡片式索引 v1 · 内容方向：资料聚合</span><br>
+    <span class="small-meta">版本：2025 · 非官方页面 · 仅供信息参考</span>
+  </div>
+</div>
+</body>
+</html>
